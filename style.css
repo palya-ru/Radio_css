@@ -1,0 +1,94 @@
+:root {
+    --color-radio: crimson;
+    --color-label: tomato;
+    --color-disabled: #ed143d78;
+    font-size: 16px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    width: max-content;
+    margin: 15px auto 0;
+}
+
+label {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    grid-gap: 0.5em;
+    color: var(--color-radio);
+    transition: color 0.5s linear;
+    cursor: pointer;
+}
+
+label + label {
+    margin-top: 0.75em;
+}
+
+label:focus-within,
+label:hover {
+    color: var(--color-label);
+}
+
+input[type=radio] {
+    display: grid;
+    place-content: center;
+    appearance: none;
+    margin: 0;
+    background-color: transparent;
+    border: 0.1em solid currentColor;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    cursor: pointer;
+}
+
+input[type=radio]::before {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--color-label);
+}
+
+input[type=radio]:checked::before {
+    transform: scale(1);
+}
+
+input[type=radio]:focus {
+    outline: max(2px, 0.1em) solid currentColor;
+    outline-offset: max(2px, 0.1em);
+}
+input[type=radio]:disabled:checked:before{
+    box-shadow: inset 1em 1em var(--color-disabled);
+}
+input[type=radio]:disabled,
+.disabled{
+    color: var(--color-disabled);
+    cursor: not-allowed;
+}
+.disabled:hover{
+    color: var(--color-disabled);
+}
